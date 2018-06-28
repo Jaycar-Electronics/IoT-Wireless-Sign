@@ -38,7 +38,7 @@ The final point to note is that the ESP requires two pull-ups to correctly boot 
 Read further and look at some pictures to get an understanding of how the board is laid out and fits to the panel.
 
 ## Downloads
-* [Source code](downloads/WifiSign.zip)
+* [Source code](https://github.com/duinotech/IoT-Wireless-Sign/archive/master.zip)
 
 ## Software libraries
 
