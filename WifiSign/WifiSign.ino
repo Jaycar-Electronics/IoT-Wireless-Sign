@@ -11,7 +11,7 @@
 #include <fonts/Arial14.h>
 
 
-const char* ssid = "";  //your wifi network name
+const char* ssid = "draggy";  //your wifi network name
 const char* pwd = "";   //your wifi password
 String location = "mainroom";  //set this to the location where the sign is, one word.
 
@@ -100,20 +100,22 @@ void loop()
 				byte c = client.read();
 
 				//write it to Serial, you should see a letter, because the byte is valid ascii
-				Serial.write(c);
+				//Serial.write(c);
 
 				//if it is a newline character, we have finished this line so we can check it.
 				if(c == '\n')
 				{
 					//begin processing line:
 
-
+          //Serial.println(line);
+          
 					//check if the line starts with "GET" which is a HTML word
 					if(line.startsWith("GET /?"))
 					{ 
 						//this line has the params, so copy it into our command buffer
 						command = line;
-
+            Serial.println("found command params");
+            Serial.println(line);
 						// keep getting the information though, as we need to listen to the client before we can respond.
 					}
 
@@ -146,12 +148,14 @@ void loop()
 					if ( c != '\r')
 					{
 						//add it to the line buffer     
-						line += c;            
+						line += (char)c;            
 					}
 				}
 				//keep looping through the data sent from the client, 
 			}
 		}
+
+    Serial.println(command);
 
 		/*
 		 * Here we have finished receiving data so we respond.
@@ -181,10 +185,14 @@ void loop()
 			String opt_value = command.substring(opt_index_start,opt_index_end);
 
 			Serial.println(command);
+      Serial.println(n_endpoints);
+      for(int j = 0; j < n_endpoints; j++){
+        Serial.print(endpoints[j],DEC);
+        Serial.print(",");}
 			Serial.print("opt_indexes: ");
 			Serial.print(opt_index_start,DEC);
 			Serial.print("-");
-			Serial.println(opt_index_start,DEC);
+			Serial.println(opt_index_end,DEC);
 			Serial.print("option=");
 			Serial.print(opt_value);
 			Serial.println();
@@ -286,8 +294,8 @@ void loop()
 short nextEndpoint(short index, int* endpoint_list, short len){
 	short i;
 	for(i = 0; i < len; i++)
-		if (endpoint_list[i] >= index)
-			return i;
+		if (endpoint_list[i] > index)
+			return endpoint_list[i];
 	return 0;
 }
 
@@ -296,13 +304,13 @@ int fillEndpointList(const char* cmd_str, int len, int* endpoint_list){
 	int ep = 0;
 	int i;
 	for(i = 0; i < len; i++){
-		if (cmd_str[i] == '?' || cmd_str[i] == '&'){
+		if (cmd_str[i] == '?' || cmd_str[i] == '&' || cmd_str[i] == ' '){
 			endpoint_list[ep] = i;
 			ep++;
 		}
 	}
-	endpoint_list[ep] = len;
-	return len;
+	endpoint_list[ep] = ep;
+	return ep;
 }
 
 void sendPage(WiFiClient c){
@@ -356,9 +364,9 @@ void sendPage(WiFiClient c){
 	c.println("<h3>Jaycar - Wireless Sign</h3>"
 			"<form>"
 			"<fieldset><legend>Dot Matrix Display</legend>"
-			"<input type='radio' name='op' option='text' checked>Show Text:<br>"
-			"<input type='text'><br>"
-			"<input type='radio' name='op' option='clock'>Show Clock<br>"
+			"<input type='radio' name='option' value='text' checked>Show Text:<br>"
+			"<input type='text' name='text' ><br>"
+			"<input type='radio' name='option' value='clock'>Show Clock<br>"
 			"<br>"
 			"<input type='submit' Value='Confirm'>"
 			"</fieldset>"
