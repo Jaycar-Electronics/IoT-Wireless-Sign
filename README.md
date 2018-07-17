@@ -9,12 +9,12 @@ This neat project can instantly decorate your shop window, bedroom door, or loun
 ## Bill of Materials
 | Qty | Code | Description |
 | --- | --- | ---|
-|1 | [XC4622](jaycar.com.au/p/XC4622) | White dot matrix display panel
-|1 | [XC3802](jaycar.com.au/p/XC3802) | ESP8266
-|1 | [ZS5807](jaycar.com.au/p/ZS5807) | 7407 hex buffer IC
-|1 | [HP9550](jaycar.com.au/p/HP9550) | universal pre-punched experimenters board
-|1 | [RR0596](jaycar.com.au/p/RR0596) | 10k resistor pack
-|1 | [RR0572](jaycar.com.au/p/RR0572) | 1k resistor pack
+|1 | [XC4622](http://jaycar.com.au/p/XC4622) | White dot matrix display panel
+|1 | [XC3802](http://jaycar.com.au/p/XC3802) | ESP8266
+|1 | [ZS5807](http://jaycar.com.au/p/ZS5807) | 7407 hex buffer IC
+|1 | [HP9550](http://jaycar.com.au/p/HP9550) | universal pre-punched experimenters board
+|1 | [RR0596](http://jaycar.com.au/p/RR0596) | 10k resistor pack
+|1 | [RR0572](http://jaycar.com.au/p/RR0572) | 1k resistor pack
 
 ## Connections
 
@@ -47,7 +47,7 @@ Read further and look at some pictures to get an understanding of how the board 
 |ESP8266WiFi | Ivan Grokhotkov |
 
 
- * be sure to change your arduino environment to program the ESP8266 as shown in the [manual](https://www.jaycar.com.au/medias/sys_master/images/9110200188958/XC3802-manualMain.pdf)
+ * be sure to change your arduino environment to program the ESP8266 as shown in the [manual.](https://www.jaycar.com.au/p/XC3802)
 
 ## Assembly
 
@@ -91,7 +91,7 @@ then the ESP has 2 resistors to boot properly.
 
 ## Programming
 
-* Remember! [ESP8266 on Arduino ](https://www.jaycar.com.au/medias/sys_master/images/9110200188958/XC3802-manualMain.pdf)
+* Remember! [ESP8266 on Arduino ](https://www.jaycar.com.au/p/XC3802)
 
 
 Download the source code and extract into a new folder, open the .ino file in the Arduino IDE.
@@ -121,4 +121,4 @@ you should see the sign showing up with the text you've set.
 "param switch" in the code. See if you can send binary data to turn on/off each separate pixel using dmd.setPixel(x,y,v);
 * The DMD also has a brightness setting, use this in the control panel.
 * Get a small picture frame to frame the sign.
-* You can interface with another arduino and use a small speaker [AS3006](jaycar.com.au/p/AS3006) to play some melodies from your sign as well.
+* You can interface with another arduino and use a small speaker [AS3006](http://jaycar.com.au/p/AS3006) to play some melodies from your sign as well.
