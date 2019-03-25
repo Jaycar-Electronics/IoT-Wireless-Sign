@@ -1,7 +1,5 @@
 # WiFi Sign
 
-_Author's Note: This project immediately went into revisions after publications, as the mini protoboard only just barely fits everything in, and we felt it would be easier to use a bigger protoboard to make. Thus, some pictures are from different versions, but the connections are all following the same circuit diagram. If you have any issues or need assistance building this project, you can email me directly at DWest@jaycar.com.au_
-
 This neat project can instantly decorate your shop window, bedroom door, or loungeroom. It allows you to mount a dot matrix display somewhere in your house and connect to it through the same network. Then using a custom HTTP server, you can access the sign through its network address and change it to display a clock, text, or anything else that you might want.
 
 

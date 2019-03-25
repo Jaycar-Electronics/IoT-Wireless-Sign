@@ -108,10 +108,10 @@ void loop()
 					//begin processing line:
 
           //Serial.println(line);
-          
+
 					//check if the line starts with "GET" which is a HTML word
 					if(line.startsWith("GET /?"))
-					{ 
+					{
 						//this line has the params, so copy it into our command buffer
 						command = line;
             Serial.println("found command params");
@@ -120,12 +120,12 @@ void loop()
 					}
 
 
-					//check if this line is empty, if it is, we have 2 newlines in a row 
+					//check if this line is empty, if it is, we have 2 newlines in a row
 					//(first one finished last line, this is empty)
 					if (line.length() == 0)
-					{ 
+					{
 
-						//this is the end of the request. they have sent two new lines in a row, 
+						//this is the end of the request. they have sent two new lines in a row,
 						//so here we respond by sending a page back.
 						Serial.println("end of client request, responding");
 
@@ -133,25 +133,25 @@ void loop()
 						sendPage(client);
 
 						//break out of "while (client connected)"
-						break; 
+						break;
 
-					} 
+					}
 
-					//the line is finished, but it's not GET and it's not empty, 
+					//the line is finished, but it's not GET and it's not empty,
 					//so we don't care about it. clear out the line buffer
-					line = "";          
-				} 
-				else 
+					line = "";
+				}
+				else
 				{
-					//it is not a newline character, but we stil have a character 
+					//it is not a newline character, but we stil have a character
 					//if we got anything other than an \r (we don't want \r)
 					if ( c != '\r')
 					{
-						//add it to the line buffer     
-						line += (char)c;            
+						//add it to the line buffer
+						line += (char)c;
 					}
 				}
-				//keep looping through the data sent from the client, 
+				//keep looping through the data sent from the client,
 			}
 		}
 
@@ -228,7 +228,7 @@ void loop()
 
 			}
 			else if (opt_value == "clock")
-			{ 
+			{
 				//we got a clock command
 				clockMode = true;
 			}
@@ -252,7 +252,7 @@ void loop()
 			//get google, they have GMT in the response
 			http.begin("www.google.com");
 			const char* important_headers[] = { "Date" };
-			http.collectHeaders(important_headers, (size_t)1 );      
+			http.collectHeaders(important_headers, (size_t)1 );
 
 			int rc = http.GET();
 			if(rc > 0)
@@ -262,16 +262,16 @@ void loop()
 /*
          __                              ____                        ________  _________
    _____/ /_  ____ _____  ____ ____     / __/________  ____ ___     / ____/  |/  /_  __/
-  / ___/ __ \/ __ `/ __ \/ __ `/ _ \   / /_/ ___/ __ \/ __ `__ \   / / __/ /|_/ / / /   
- / /__/ / / / /_/ / / / / /_/ /  __/  / __/ /  / /_/ / / / / / /  / /_/ / /  / / / /    
- \___/_/ /_/\__,_/_/ /_/\__, /\___/  /_/ /_/   \____/_/ /_/ /_/   \____/_/  /_/ /_/     
-                       /____/                                                           
+  / ___/ __ \/ __ `/ __ \/ __ `/ _ \   / /_/ ___/ __ \/ __ `__ \   / / __/ /|_/ / / /
+ / /__/ / / / /_/ / / / / /_/ /  __/  / __/ /  / /_/ / / / / / /  / /_/ / /  / / / /
+ \___/_/ /_/\__,_/_/ /_/\__, /\___/  /_/ /_/   \____/_/ /_/ /_/   \____/_/  /_/ /_/
+                       /____/
 */
 					//here we just write out what we've got as GMT to the panel.
 					dmd.drawString(0, 0, datetime.c_str());
 				}
 			}
-			else 
+			else
 			{
 				Serial.println("error getting time from google");
 				Serial.println(rc,DEC);
@@ -282,12 +282,12 @@ void loop()
 	for(int i = 0; i < 48; i++)
 	{
 		dmd.marqueeScrollX(1);
-		delay(10);
+		delay(40);
 	}
 	for(int i = 0; i < 48; i++)
 	{
 		dmd.marqueeScrollX(-1);
-		delay(10);
+		delay(40);
 	}
 }
 //returns the index of the next endpoint, coming from index, for max of len.
@@ -372,9 +372,6 @@ void sendPage(WiFiClient c){
 			"</fieldset>"
 			"</form>"
 			"</html>");
-	//final line to finish it off 
+	//final line to finish it off
 	c.println();
 }
-
-
-
