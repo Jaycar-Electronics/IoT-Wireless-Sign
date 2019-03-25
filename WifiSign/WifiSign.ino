@@ -2,6 +2,7 @@
 
 // NTP client
 #include <NTPClient.h>
+
 //ESP Wifi server
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
@@ -15,7 +16,7 @@
 
 #define WIFI_SSID ""
 #define WIFI_PWD ""
-#define LOCATION "mainroom.local" //keep the .local part of this 
+#define LOCATION "mainroom.local" //keep the .local part of this
 
 WiFiUDP ntpUDP;
 //set offset relying on your timezone
