@@ -1,0 +1,27 @@
+<!doctype HTML>
+
+<head>
+	<title> IoT Wireless Sign </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<form action="/set" method="post">
+		<fieldset><legend>Dot Matrix Display</legend>
+			<input type='text'  name='display'></input>
+			<div class= 'opt'>
+				<label> Show Text
+					<input type='radio' name='timeMode' value='0' checked></input>
+				</label>
+				<label> Show Clock
+					<input type='radio' name='timeMode' value='1'></input>
+				</label>
+			</div>
+			<label> Scroll Speed (less is faster)
+			<input type="text" name="timeSpeed" value=40 ></input>
+			</label>
+			<input type='submit' Value='Confirm'>
+		</fieldset>
+	</form>
+</body>
+</html>

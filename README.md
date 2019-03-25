@@ -40,12 +40,15 @@ Read further and look at some pictures to get an understanding of how the board 
 
 ## Software libraries
 
-|Library | Author |
-|---| ---|
-|ESP8266WiFi | Ivan Grokhotkov |
+|Library | Author | Version | 
+|---| ---| --- |
+|DMD2 | Freetronics | 0.0. 3 |
+|NTPClient | Fabrice Weinberg | 3.1.0 |
 
 
- * be sure to change your arduino environment to program the ESP8266 as shown in the [manual.](https://www.jaycar.com.au/p/XC3802)
+* Use the SPIFFS tool from the ESP8266 community, located at [on this github page.](https://github.com/esp8266/arduino-esp8266fs-plugin)
+
+* Be sure to change your arduino environment to program the ESP8266 as shown in the [manual.](https://www.jaycar.com.au/p/XC3802)
 
 ## Assembly
 
@@ -97,26 +100,29 @@ Download the source code and extract into a new folder, open the .ino file in th
 You should see three variables there is to set:
 
 ```c++
-const char* ssid = "";  //your wifi network name
-const char* pwd = "";   //your wifi password
-String location = "mainroom";  //set this to the location where the sign is, one word.
+#define WIFI_SSID ""
+#define WIFI_PWD ""
+#define LOCATION "mainroom"
 ```
 
-set these to your wifi name, password, and the location of the sign, then upload to the ESP.
+Set these to your wifi name, password, and the location of the sign, then upload to the ESP.
+
+#### SPIFFS
+We are using SPIFFS tool located [here](https://github.com/esp8266/arduino-esp8266fs-plugin) - Follow their install instructions, and upload the SPIFFS data to the ESP device.
+
+Once that is done, you should find the ESP serves the index.html from within the data directory.
+
 
 ## Use
 
-Once the ESP is connected to the WiFi network, it makes a website hosted on "http://mainroom.local" which "mainroom" is the room name you set before.
+Once the ESP is connected to the WiFi network, it makes a website hosted on "http://mainroom.local" which "mainroom" is the room name you set before. If that does not work, you can use the Serial Monitor to see what the IP is when it boots.
 
-if that does not work, you can use the Serial Monitor to see what the IP is when it boots.
+When you are at the website, you can find a radio button for "text" or "clock" and a text field. set the text to what you want and hit submit. You should see the sign showing up with the text you've set.
 
-when you are at the website, you can find a radio button for "text" or "clock" and a text field. set the text to what you want and hit submit.
+There is also the speed setting for how fast the marquee scrolls past.
 
-you should see the sign showing up with the text you've set.
 
 ## Future Improvements
-* At the moment there is text and a clock, you can specify your own command by making a new
-"param switch" in the code. See if you can send binary data to turn on/off each separate pixel using dmd.setPixel(x,y,v);
 * The DMD also has a brightness setting, use this in the control panel.
 * Get a small picture frame to frame the sign.
 * You can interface with another arduino and use a small speaker [AS3006](http://jaycar.com.au/p/AS3006) to play some melodies from your sign as well.
